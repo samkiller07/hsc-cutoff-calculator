@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HSC Cutoff Calculator</title>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .calculator:hover {
+      transform: translateY(-6px);
+    }
+
+    h1 {
+      color: #185a9d;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 15px;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 5px;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #43cea2;
+      box-shadow: 0 0 8px rgba(67,206,162,0.3);
+    }
+
+    button {
+      background: #185a9d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #43cea2;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+    <h1>HSC Cutoff Calculator 💯</h1>
+    <p>Calculate your Engineering Cutoff (Out of 100 Marks)</p>
+
+    <label for="maths">Maths Mark:</label>
+    <input type="number" id="maths" placeholder="Enter Maths marks (out of 100)" />
+
+    <label for="physics">Physics Mark:</label>
+    <input type="number" id="physics" placeholder="Enter Physics marks (out of 100)" />
+
+    <label for="chemistry">Chemistry Mark:</label>
+    <input type="number" id="chemistry" placeholder="Enter Chemistry marks (out of 100)" />
+
+    <button onclick="calculateCutoff()">Calculate</button>
+
+    <div class="result" id="result"></div>
+
+    <footer>Designed for Tamil Nadu HSC Students 🇮🇳</footer>
+  </div>
+
+  <script>
+    function calculateCutoff() {
+      const m = parseFloat(document.getElementById('maths').value);
+      const p = parseFloat(document.getElementById('physics').value);
+      const c = parseFloat(document.getElementById('chemistry').value);
+      const result = document.getElementById('result');
+
+      if (isNaN(m) || isNaN(p) || isNaN(c)) {
+        result.textContent = "⚠️ Please enter all three marks!";
+        result.style.color = "red";
+        return;
+      }
+
+      if (m > 100 || p > 100 || c > 100) {
+        result.textContent = "❌ Marks should be out of 100 only!";
+        result.style.color = "red";
+        return;
+      }
+
+      const cutoff = m + (p + c) / 2;
+      result.textContent = `🎯 Your Cutoff Mark is: ${cutoff.toFixed(2)} / 200`;
+      result.style.color = "#185a9d";
+    }
+  </script>
+</body>
+</html>
